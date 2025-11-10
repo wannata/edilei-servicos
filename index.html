@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edilei Serviços - Frete Rápido</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* RESET E ESTILOS GERAIS */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f8f9fa;
+    }
+
+    /* HEADER */
+    header {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .logo-icon {
+      font-size: 2rem;
+      color: #25D366;
+    }
+
+    .logo-text {
+      font-size: 2.2rem;
+      font-weight: 800;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* SEÇÕES */
+    section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: #1e3c72;
+      text-align: center;
+      position: relative;
+    }
+
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: #2a5298;
+      border-radius: 2px;
+    }
+
+    section p {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* SEÇÃO INÍCIO */
+    #inicio {
+      background: linear-gradient(rgba(30, 60, 114, 0.8), rgba(42, 82, 152, 0.8)), 
+                  url('IMAGEMCARGA.jpg') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 8rem 2rem;
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #inicio h2 {
+      font-size: 2.5rem;
+      color: white;
+      margin-bottom: 1.5rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    #inicio h2::after {
+      background: white;
+    }
+
+    #inicio p {
+      font-size: 1.3rem;
+      color: white;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      max-width: 600px;
+      margin-bottom: 1.5rem;
+    }
+
+    .destaque {
+      font-size: 1.4rem !important;
+      font-weight: 600;
+      color: #a8e6cf !important;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid #25D366;
+    }
+
+    .chamada-redes {
+      font-size: 1.2rem !important;
+      margin-top: 1rem;
+      color: #e9ecef !important;
+      font-style: italic;
+    }
+
+    /* SEÇÃO SERVIÇOS */
+    #servicos {
+      background-color: white;
+    }
+
+    #servicos ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    #servicos li {
+      background: #f8f9fa;
+      padding: 2rem;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      font-size: 1.2rem;
+      font-weight: 500;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    #servicos li:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    }
+
+    .servico-emoji {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* SEÇÃO DEPOIMENTOS */
+    #depoimentos {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    }
+
+    .depoimentos-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .depoimento-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .depoimento-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .depoimento-texto {
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .depoimento-cliente {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .cliente-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #2a5298;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+    }
+
+    .cliente-info h4 {
+      color: #1e3c72;
+      margin-bottom: 0.3rem;
+    }
+
+    .cliente-info p {
+      color: #666;
+      font-size: 0.9rem;
+      text-align: left;
+      margin: 0;
+    }
+
+    .estrelas {
+      color: #FFD700;
+      margin-top: 0.5rem;
+    }
+
+    /* SEÇÃO SOBRE */
+    #sobre {
+      background-color: white;
+    }
+
+    .sobre-content {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .sobre-texto {
+      flex: 1;
+    }
+
+    .sobre-imagem {
+      flex: 1;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .sobre-imagem img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .sobre-imagem:hover img {
+      transform: scale(1.05);
+    }
+
+    /* SEÇÃO MAPA */
+    #mapa {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      padding: 4rem 2rem;
+    }
+
+    .mapa-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .mapa-container iframe {
+      width: 100%;
+      height: 400px;
+      border: none;
+    }
+
+    /* SEÇÃO CONTATO */
+    #contato {
+      background-color: white;
+    }
+
+    .contato-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contato-item {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 1.5rem;
+      font-size: 1.2rem;
+      padding: 1.5rem;
+      background: #f8f9fa;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      border-left: 4px solid #2a5298;
+    }
+
+    .contato-item:hover {
+      background: #e9ecef;
+      transform: translateX(5px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .contato-emoji {
+      font-size: 1.8rem;
+      min-width: 50px;
+      text-align: center;
+    }
+
+    .contato-texto {
+      flex: 1;
+    }
+
+    .contato-destaque {
+      color: #1e3c72;
+      font-weight: 600;
+      display: block;
+      margin-top: 0.3rem;
+    }
+
+    #contato a {
+      color: #25D366;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    #contato a:hover {
+      color: #128C7E;
+      text-decoration: underline;
+    }
+
+    .instagram-link {
+      color: #E1306C !important;
+    }
+
+    .instagram-link:hover {
+      color: #C13584 !important;
+    }
+
+    /* BOTÃO FLUTUANTE DO WHATSAPP */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #25D366;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      z-index: 100;
+      transition: all 0.3s;
+      text-decoration: none;
+      font-size: 2rem;
+      color: white;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+      }
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      background: #128C7E;
+      animation: none;
+    }
+
+    /* EMOJIS ESPECIAIS */
+    .emoji-whatsapp::before {
+      content: "📱";
+    }
+
+    .emoji-instagram::before {
+      content: "📸";
+    }
+
+    .emoji-email::before {
+      content: "📧";
+    }
+
+    /* FOOTER */
+    footer {
+      background: #1e3c72;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+
+    /* RESPONSIVIDADE */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      
+      .logo-text {
+        font-size: 1.8rem;
+      }
+      
+      nav {
+        gap: 1rem;
+      }
+      
+      nav a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+      }
+      
+      section {
+        padding: 3rem 1.5rem;
+      }
+      
+      section h2 {
+        font-size: 1.8rem;
+      }
+      
+      #inicio {
+        padding: 6rem 1.5rem;
+        min-height: 70vh;
+      }
+      
+      #inicio h2 {
+        font-size: 2rem;
+      }
+      
+      #servicos ul {
+        grid-template-columns: 1fr;
+      }
+      
+      .sobre-content {
+        flex-direction: column;
+        gap: 2rem;
+      }
+      
+      .contato-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+        padding: 1.2rem;
+      }
+      
+      .contato-emoji {
+        font-size: 2rem;
+      }
+      
+      .depoimentos-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo-text {
+        font-size: 1.5rem;
+      }
+      
+      nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      
+      section {
+        padding: 2rem 1rem;
+      }
+      
+      #inicio {
+        padding: 4rem 1rem;
+        min-height: 60vh;
+      }
+      
+      #inicio h2 {
+        font-size: 1.6rem;
+      }
+      
+      #servicos li {
+        padding: 1.5rem;
+      }
+      
+      .servico-emoji {
+        font-size: 2rem;
+      }
+      
+      .contato-item {
+        font-size: 1rem;
+      }
+      
+      .whatsapp-float {
+        width: 60px;
+        height: 60px;
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="logo">
+        <i class="fas fa-truck-moving logo-icon"></i>
+        <h1 class="logo-text">Edilei Serviços</h1>
+      </div>
+    </div>
+    <nav>
+      <a href="#inicio">Início</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#sobre">Sobre Nós</a>
+      <a href="#mapa">Localização</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <section id="inicio">
+    <h2>Transporte com Segurança e Agilidade</h2>
+    <p>Atendemos mudanças, encomendas e fretes rápidos em Ribeirão das Neves e região.</p>
+    <p class="destaque">Também fazemos fretes para outros estados!</p>
+    <p class="chamada-redes">Para saber mais entre em contato e siga nossas redes sociais.</p>
+  </section>
+
+  <section id="servicos">
+    <h2>Nossos Serviços</h2>
+    <ul>
+      <li>
+        <span class="servico-emoji">📦</span>
+        <span>Frete urbano</span>
+      </li>
+      <li>
+        <span class="servico-emoji">🚚</span>
+        <span>Frete interestadual</span>
+      </li>
+      <li>
+        <span class="servico-emoji">🏠</span>
+        <span>Mudanças residenciais</span>
+      </li>
+      <li>
+        <span class="servico-emoji">📍</span>
+        <span>Coletas e entregas programadas</span>
+      </li>
+    </ul>
+  </section>
+
+  <section id="depoimentos">
+    <h2>O que nossos clientes dizem</h2>
+    <div class="depoimentos-container">
+      <div class="depoimento-card">
+        <div class="depoimento-texto">
+          "Contratei para uma mudança residencial e fiquei impressionado com a eficiência. Tudo foi feito com cuidado e dentro do prazo combinado!"
+        </div>
+        <div class="depoimento-cliente">
+          <div class="cliente-avatar">MC</div>
+          <div class="cliente-info">
+            <h4>Maria Clara</h4>
+            <p>Mudança Residencial</p>
+            <div class="estrelas">★★★★★</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="depoimento-card">
+        <div class="depoimento-texto">
+          "Precisava enviar mercadorias para outro estado e o Edilei Serviços foi impecável. Preço justo e entrega rápida. Recomendo!"
+        </div>
+        <div class="depoimento-cliente">
+          <div class="cliente-avatar">JS</div>
+          <div class="cliente-info">
+            <h4>João Silva</h4>
+            <p>Frete Interestadual</p>
+            <div class="estrelas">★★★★★</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="depoimento-card">
+        <div class="depoimento-texto">
+          "Serviço de coleta e entrega super pontual. Uso regularmente para meu comércio e nunca tive problemas. Profissionais muito atenciosos."
+        </div>
+        <div class="depoimento-cliente">
+          <div class="cliente-avatar">AS</div>
+          <div class="cliente-info">
+            <h4>Ana Souza</h4>
+            <p>Coleta Programada</p>
+            <div class="estrelas">★★★★★</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <h2>Sobre Nós</h2>
+    <div class="sobre-content">
+      <div class="sobre-texto">
+        <p>Somos uma empresa com anos de experiência no transporte de cargas. Compromisso, pontualidade e cuidado com seus bens são nossos principais valores.</p>
+        <p>Nossa equipe é formada por profissionais qualificados que garantem que sua carga chegue ao destino com segurança e dentro do prazo combinado.</p>
+        <p style="margin-top: 1rem; font-weight: 600; color: #1e3c72;">Atendemos especialmente Ribeirão das Neves e região metropolitana!</p>
+      </div>
+      <div class="sobre-imagem">
+        <img src="IMAGEMCARGA.jpg" alt="Centro de distribuição - Edilei Serviços">
+      </div>
+    </div>
+  </section>
+
+  <section id="mapa">
+    <h2>Nossa Localização</h2>
+    <div class="mapa-container">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119998.22460547686!2d-44.14480929999999!3d-19.7663135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa6c371b36c3e1d%3A0x3d9d6c5b1b6a0b1e!2sRibeir%C3%A3o%20das%20Neves%2C%20MG!5e0!3m2!1spt-BR!2sbr!4v1711234567890!5m2!1spt-BR!2sbr" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </section>
+
+  <section id="contato">
+    <h2>Entre em Contato</h2>
+    <div class="contato-info">
+      <div class="contato-item">
+        <span class="contato-emoji emoji-whatsapp"></span>
+        <div class="contato-texto">
+          <strong>WhatsApp:</strong>
+          <a href="https://wa.me/553190822176" target="_blank" class="contato-destaque">
+            Clique aqui para solicitar um frete em Ribeirão das Neves
+          </a>
+          <span class="contato-destaque">+55 31 9082-2176</span>
+        </div>
+      </div>
+      
+      <div class="contato-item">
+        <span class="contato-emoji emoji-email"></span>
+        <div class="contato-texto">
+          <strong>Email:</strong>
+          <span class="contato-destaque">edileiservicos@gmail.com</span>
+        </div>
+      </div>
+      
+      <div class="contato-item">
+        <span class="contato-emoji emoji-instagram"></span>
+        <div class="contato-texto">
+          <strong>Instagram:</strong>
+          <a href="https://instagram.com/edileiservicos" target="_blank" class="contato-destaque instagram-link">
+            @edileiservicos
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <a href="https://wa.me/553190822176" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <footer>
+    <p>© 2024 Edilei Serviços - Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    // Adicionar scroll suave para os links de navegação
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 100,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Adicionar ano atual no footer
+    document.querySelector('footer p').innerHTML = `© ${new Date().getFullYear()} Edilei Serviços - Todos os direitos reservados.`;
+  </script>
+</body>
+</html>
